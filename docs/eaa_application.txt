@@ -1,0 +1,829 @@
+EAA can be used to provide secure access to different types of applications used by your organization.
+
+First, you would need an account in Control Center and administrator rights. If you don't have an account yet, contact your sales representative. With this, you can log in to Enterprise Center from ​Akamai Control Center​. After you finish this easy set up, you can immediately start-off with Get started with Bookmark Application.
+
+To configure a more real-world practical application, you would need at least one instance of a connector as a virtual machine (VM) in your environment. You can learn this in Get started with Web Application along with configuring a HTTPS application.
+
+Lastly, if you plan securely access a client-access application on an end-user's laptop, you would need to additionally set up and configure the EAA Client software on the end-user's laptop top, create a TCP-type client access application, create access-control lists (ACLs) and apply device posture policies to access your TCP-type client access application. You can learn this in Get started with TCP-type client-access Application
+
+To use a simple-to-complex learning approach, start with the Get started with Bookmark Application, then learn the Get started with Web Application, and finally do the Get started with TCP-type client-access Application.
+
+To learn the most popularly configured use-case jump to Get started with Web Application.
+
+Enjoy your learning journey!
+
+
+Bookmark applications are simple applications that you can publish as a link on the EAA Login Portal but are not formally secured behind Enterprise Application Access. A bookmark application is like a Hello World application. Set it up and learn how to add users to the Enterprise Application Access Cloud directory, create an identity provider (IdP), associate the directory and deploy the IdP, configure an application, and verify you can access the bookmark URL from the application inside Enterprise Application Access Cloud.
+
+Add users to the cloud directory
+You need to add users who can access the bookmark application to the cloud directory. Enterprise Center allows you to quickly configure an ​Akamai​ Cloud directory.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Directories.
+
+Select Cloud Directory.
+
+In Users click Add New User (+).
+
+Enter email, first name, and last name.
+
+Click Send Invite. New users receive an email to create a password and complete their account authorization.
+
+Click Save User Changes (✓).
+New users are now added to the Enterprise Application Access default directory, EAA Cloud directory.
+
+Next, create an ​Akamai​ Identity provider (IdP).
+
+Create an ​Akamai​ Identity provider (IdP), associate the cloud directory, and deploy the IdP
+Identity providers (IdPs) manage user identity information and provide single sign-on (SSO) and multi-factor authentication (MFA).
+
+Associate an IdP to the previously created directory to allow users to authenticate to your bookmark application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Identity Providers.
+
+Click Add Identity provider (+).
+
+Enter a name, description, and select the provider type as ​Akamai​, for example, IDP2.
+
+Click Continue.
+
+In Settings > General > Identity server enter a URL. Leave all other settings set to default.
+
+Click Save.
+
+In Directories click Associate (+).
+Associate directory
+
+Select the Cloud Directory and click Associate.
+The cloud directory appears under the Directories tab.
+
+Leave the default settings in the Login portal and click Save.
+Hover over the Status of the identity provider, if there are no errors, Ready for deployment appears.
+Ready for deployment
+
+Click Deploy IDP.
+Pending Changes appears. All the pending deployment changes are shown. Make sure that IDP2 is selected. If you select any other IdPs, they are simultaneously deployed.
+You can click modified, to check the changes done with the previous version.
+Pending changes
+
+Click Deploy and add a Deploy Confirmation message in the dialog box and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow IdP is Deployed appears.
+IdP is deployed
+
+The cloud directory is now associated with the new identity provider. Users from to the directory can access applications associated with the identity provider.
+
+Next, configure your bookmark application.
+
+Configure a bookmark application
+You can configure different types of applications in Enterprise Application Access like access application (web, RDP, SSH, VNC), SaaS application, client-access application (TCP-type or tunnel-type), and bookmark application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Click Add Application (+).
+
+Enter the application name and description, and select Bookmark App in Type.
+
+Click Add Application.
+Your application opens.
+
+In Settings select application category (optional) and enter a bookmark URL.
+
+Click Save.
+Your application is configured.
+
+Next, deploy your application.
+
+Configure the authentication source, and deploy the application
+Assign the previously deployed identity provider (IdP) and directory to the bookmark application and deploy your application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Select your application to open it.
+
+In the Authentication add the authentication for your application:
+
+Enable Authentication.
+
+Select Identity provider from the list.
+
+Click Assign Directory and select one or more directories from the list.
+
+Click Associate.
+The directory appears under the Assigned Directories.
+Assigned directories
+
+Leave the History in the application configuration default and click Save.
+Hover over the Deployment symbol, if all configurations are correct, Ready for Deployment appears.
+
+To deploy the application click Deploy Application.
+Pending Changes appears. All the pending deployment changes are shown. Make sure you selected your application. If you select any others, they are simultaneously deployed.
+Deployment status
+
+Click Deploy and add a Deploy Confirmation message in the dialog box and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow App Deployed appears.App deployed
+
+Next, verify if you can access the application.
+
+Verify you can access the app from the EAA Login Portal
+Open a new tab and enter the login portal URL for your IdP.
+
+Log in with your username and password you created and added to the cloud directory.
+
+Click on your bookmark application.
+You should be able to go to the URL you created
+
+
+
+
+
+
+
+
+
+
+Get started with a web application
+Suggest Edits
+Web applications are used by an enterprise and reside in the app server within the data center.
+
+To provide secure access with Enterprise Application Access (EAA), attach an access and identity connector to the web application server inside the data center. The connector does a dialout to the Enterprise Application Access Cloud on port 443. The users connect to the Enterprise Application Access Login Portal URL in their web browsers. They provide their credentials once to gain access to all of the applications.
+
+Get started with a web app
+
+Set up a web application and learn how to:
+
+Create and install a connector in Amazon AWS environment.
+
+Add users to the Enterprise Application Access Cloud directory, create an ​Akamai​ identity provider (IdP).
+
+Associate the directory and deploy the IdP.
+
+Configure a web application (HTTPS application) with time-based access control rules (ACL) for restricted access to certain users at specific times.
+
+Add authentication with the identity provider (IdP) for the web application.
+
+Verify if the user can access the web application using the external hostname.
+
+Start with a simple configuration:
+
+Use the cloud directory in Enterprise Application Access (do not use any other Active Directory or LDAP).
+
+Use the ​Akamai​ cloud domain (do not use any custom external domain). You do not have to configure and upload certificates.
+
+Also, we skip for now application services like URL rewrite rules for optimized content delivery, URL path-based policies, and use of Internet Content Adaptation Protocol (ICAP) for offload-processing of internet-based content by dedicated servers.
+
+The authentication mechanism for the web application server is set to none (default). Additional configuration is needed if you want to use any of the advanced application-facing authentication mechanisms like SAML 2.0, WS Federation, and OpenID Connect 1.0.
+
+Create, download and install an Access Identity Connector
+Create and deploy a connector for Amazon AWS environment for any access application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Clients & Connectors > Access and Identity Connectors.
+
+Click Add New Connector (+).
+
+Enter a connector name and an optional description.
+
+Select a connector package type. The package type corresponds to the virtual environment where you are installing the connector. For example, if you install the connector on the Amazon AWS environment, select package type Amazon AWS EC2/VPC.
+
+Enable Debugging.
+
+Click Save Connector (✓).
+The status of the connector changes to Created (Download CloudFormation Template).
+
+Click the connector status.
+The connector file opens in a separate browser window.
+
+Download and save the connector file.
+The connector file is used later to set up the connector in the virtual environment.
+
+Log in to your AWS console and select AWS services menu > AWS CloudFormation > CREATE STACK.
+
+a. Under Create Template, select Upload a template to Amazon S3.
+
+b. Click Choose File and select the downloaded CloudFormation template file.
+
+c. Enter a stack name, NAT instance type, VPC ID, and subnet information and click Next.
+
+📘
+For the NAT instance type recommended minimum is of m4.large.
+
+d. Complete the configuration of tags, storage, and other features as needed. Since AWS does not use swap space for storage, you need a minimum of 12 GB of RAM memory.
+
+Click CREATE.
+Once the stack creation is complete, the connector instance starts and automatically connects to the EAA Cloud.
+
+Next, return to the Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Clients & Connectors > Access and Identity Connectors.
+
+Search for your connector and click Approve next to it.
+
+Verify that the connector shows the private and public IP addresses assigned to it.
+The connector reaches out to the EAA Cloud after installation.
+The status changes to Ready and Connector is running.
+The connector can do dialouts from the datacenter to the EAA Cloud, connecting the application inside the datacenter to the Internet through the EAA Cloud and the user.
+
+Next, add users to the cloud directory.
+
+Add users to the cloud directory
+You need to add users who can access the web application to the cloud directory.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Directories.
+
+Select Cloud Directory.
+
+In Users click Add New User (+).
+
+Enter email, first name, and last name.
+
+Click Send Invite. New users receive an email to create a password and complete their account authorization.
+
+Click Save User Changes (✓).
+New users are now added to the Enterprise Application Access NAME>> default directory, EAA Cloud directory.
+
+Next, create an ​Akamai​ Identity provider (IdP).
+
+Create an ​Akamai​ Identity provider (IdP), associate the cloud directory, and deploy the IdP
+Identity providers (IdPs) manage user identity information and provide single sign-on (SSO) and multi-factor authentication (MFA).
+
+Associate IdP to the previously created directory to allow users to authenticate to your web application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Identity Providers.
+
+Click Add Identity provider (+).
+
+Enter a name, description, and select the provider type as ​Akamai​, for example, IDP2.
+
+Click Continue.
+
+In Settings > General > Identity server enter a URL. Leave all other settings as defaults.
+
+Click Save.
+
+In Directories click Associate (+).
+Associate directory
+
+Select the Cloud Directory and click Associate.
+The cloud directory appears under Directories.
+
+Leave the default settings in the Login portal and click Save.
+Hover over the Status of the identity provider, if there are no errors, Ready for deployment appears.
+Ready for deployment
+
+Click Deploy IDP.
+Pending Changes appears. All the pending deployment changes are shown. Make sure that IDP2 is selected. If you select any other IdPs, they are simultaneously deployed.
+You can click modified, to check the changes done with the previous version.
+Pending changes
+
+Click Deploy and add a Deploy Confirmation message in the dialog box and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow and IdP is Deployed appear.
+IdP is deployed
+
+The cloud directory is now associated with the new identity provider. Users from to the directory can access applications associated with the identity provider.
+
+Next, configure your web application.
+
+Configure a web application
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Click Add Application (+).
+
+Enter the application name and description, and select New Access App in Type.
+
+Click Add Application.
+Your application opens.
+
+In App Settings for Akamai Cloud Zone select a cloud zone located closest to the datacenter where your application resides.
+App settings
+
+In External Host enter the external host name for the application where the users can access the application. You can use your own domain or enter a ​Akamai​ domain:
+
+If you select Use Akamai domain, enter a URL, for example, https://sample-web-app.go.akamai-access.com.
+If you use the ​Akamai​ domain, you don't need to configure a certificate.
+
+If you select Use your domain, enter your own domain.
+
+📘
+If you use your own domain, you need to add a certificate and associate the certificate for your own domain and set up a CNAME redirect for the application.
+
+To add connectors to service your application, go to Connectivity, Authentication and Access section. Click Connectors.
+
+Click Add connector and select one or more connectors. Click Add Connector.
+To remove a connector click Remove Connector next to it.
+The associated connector appears under the Connectors.
+
+📘
+Note: The connector must be running to serve the application
+
+👍
+More than one connector is recommended for high availability and load balancing.
+Connectors
+
+In the Server Settings, configure the following:
+Verify Origin Server Certificate (off-by-default). Allows you to do the origin server certificate validation (recommended). Also, select a root CA certificate.
+
+ROOT CA Certificate. Choose the root CA certificate with the full bundle you uploaded into Enterprise Center after uploading a certificate in Certificates > Certificates.
+
+Application Server IP/FQDN. In Protocol select https (default) for secure web traffic or http for http traffic. In Host: Port enter a valid internal IP address for the server or the fully qualified domain name (FQDN) that you use to access this web server when inside your company's network. Also, enter an IP port number.
+Server settings
+
+📘
+If no port is specified, port 443 is the default port. Check the preview to make sure it's okay.
+
+To configure multiple applications servers for load balancing go to Server load balancing, click Add New Server (+). Enterprise Application Access supports various load balancing techniques including round-robin, session or cookie stickiness, and source IP hash in Advanced settings.
+
+To configure access control rules of who can access your application, go to Access tab, enable Access.
+
+To create a new rule, click Add Rule (+).
+To edit an existing rule, click Edit Rule.
+A modal window appears.
+
+In Rule Name enter a name for the rule and click Add.
+
+In Type select Time.
+
+In Operator select either is or is not.
+
+In Value enter the value if applicable, or select the value for the access control type.
+
+Click Time to configure the time-based settings:
+
+a. In Start Time and End Time enter a time in hh:mm, AM-PM format.
+
+b. Select time zone.
+
+c. Select the days of the week for when you want to deny access.
+
+Click Save Rule.
+Save rule
+
+You can optionally configure the following settings for your web application:
+Services. Add any services like compression, URL rewrite rules, ICAP, and URL path-based policies.
+
+Advanced. You can configure more advanced settings.
+
+If Application-facing authentication mechanism is SAML 2.0., also configure SAML Settings.
+
+If Application-facing authentication mechanism is WS-Federation, also configure WS-Federation Settings.
+
+If Application-facing authentication mechanism is Open ID Connect 1.0., also configure OpenID.
+
+Next, configure the authentication source and deploy your web application.
+
+Configure the authentication source, and deploy the application
+Assign the previously deployed identity provider (IdP) and directory to the web application and deploy your application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Select your application to open it.
+
+In the Authentication add the authentication for your application:
+
+Enable Authentication.
+
+Select Identity provider from the list.
+
+Click Assign Directory and select one or more directories from the list.
+
+Click Associate.
+The directory appears under the Assigned Directories.
+Authentication
+
+Leave History in the Application with the default configuration and click Safe.
+Hover over the Deployment symbol, if all configurations are correct, Ready for Deployment appears.
+Ready for deployment
+
+To deploy the application click Deploy Application.
+Pending Changes appears. All the pending deployment changes are shown. Make sure you selected your application. If you select any others, they are simultaneously deployed.
+
+Click Deploy and add a Deploy Confirmation message in the dialog box and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow and App Deployed appears. App deployed
+
+Next, verify if you can access the application.
+
+Verify you can access the web application from the EAA Login Portal
+Open a new tab and enter the external host name URL you created for the web application in the previous steps.
+For example, https://sample-web-app.go.akamai-access.com.
+
+Log in with your username and password you created and added to the cloud directory.
+You should be able to securely access the web application within the non-restricted access time.
+
+
+
+Get started with a TCP-type client-access application
+Suggest Edits
+If you want to secure access to a single TCP application with a single hostname, you can use a TCP-type client-access application. This type of application, such as Microsoft Outlook, is created for a single TCP application (perApp) and supports TCP only. All TCP-type client-access applications are fully backward compatible with the latest Enterprise Application Access Cloud.
+
+TCP-type client-access app lets you set up access control rules or services like the Enterprise Application Access solution used for secure access for HTTP applications.
+
+Get started with a TCP-type app
+
+For each application (1), a WebSocket tunnel is created, and the traffic is directed to the Enterprise Application Access Cloud (2). Unlike a VPN, this tunnel does not provide access to the entire network. It only establishes connectivity to the authorized application. From the Enterprise Application Access Cloud, traffic is directed to the connector through the firewall (3). Traffic is then forwarded to the application server (4). For example, if you configure the Outlook client as a client-access application, this traffic is directed to the Microsoft Exchange server.
+
+With this workflow, a single TCP application is secured by Enterprise Application Access. Users are able to access the application with the configured internal host. If there are multiple desktop applications, then multiple TCP client applications need to be configured.
+
+Set up a TCP-type client-access application and learn how to:
+
+Create and install a connector in the Amazon AWS environment.
+
+Add users to the Enterprise Application Access Cloud directory.
+
+Create an ​Akamai​ identity provider (IdP) with EAA Client and Device Posture settings enabled.
+
+Associate the directory and deploy the IdP.
+
+Configure a TCP-type client-access application with Device Posture risk tiers and tags as ACLs. With tiers and tags, you can restrict users that try to access the TCP-type app on risky or compromised devices.
+
+Add authentication with the IdP for the TCP-type application.
+
+Verify that a user can access the TCP-type application using the external hostname.
+
+Depending on the user's operating system you need to:
+
+Set up EAA Client
+
+Configure EAA Client
+
+Create UDP and TCP applications.
+
+Start with a simple configuration:
+
+Use the cloud directory in Enterprise Application Access (do not use any other Active Directory or LDAP).
+
+Use the ​Akamai​ cloud domain (do not use any custom external domain). You do not have to configure and upload certificates.
+
+Create, download and install an Access Identity Connector
+Create and deploy a connector for the Amazon AWS environment to be used for any TCP-type client-access application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Clients & Connectors > Access and Identity Connectors.
+
+Click Add New Connector (+).
+
+Enter a connector name and an optional description.
+
+Select a connector package type.
+The package type corresponds to the virtual environment where you are installing the connector. For example, if you install the connector on the Amazon AWS environment, select package type Amazon AWS EC2/VPC.
+
+Enable Debugging.
+
+Click Save Connector (✓).
+The status of the connector changes to Created (Download CloudFormation Template).
+
+Click the connector status.
+The connector file opens in a separate browser window.
+
+Download and save the connector file.
+The connector file is used later to set up the connector in the virtual environment.
+
+Log in to your AWS console and click AWS services menu > AWS CloudFormation > CREATE STACK.
+
+Under Create Template select Upload a template to Amazon S3.
+
+Click Choose File and select the downloaded CloudFormation template file.
+
+Enter a stack name, NAT instance type, VPC ID and subnet information and click Next.
+
+👍
+For the NAT instance type recommended minimum is of m4.large.
+
+Complete the configuration of tags, storage, and other features as needed. Since AWS does not use swap space for storage use a minimum of 12 GB RAM.
+Click CREATE.
+Once the stack creation is complete, the connector instance starts and automatically connects to the EAA Cloud.
+
+Return to the Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Clients & Connectors > Access and Identity Connectors.
+
+Search for your connector and click Approve next to it.
+
+Verify that the connector shows the private and public IP addresses assigned to it. This may take a few minutes.
+The connector reaches out to the EAA Cloud after installation. The status changes to Ready. Connector is running.
+The connector can do dialouts from the data center to the EAA Cloud, connecting the application inside the data center to the Internet through the EAA Cloud and the user.
+
+Next, add users to the cloud directory.
+
+Add users to the cloud directory
+You need to add users who can access the web application to the cloud directory.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Directories.
+
+Select Cloud Directory.
+
+In Users click Add New User (+).
+
+Enter email, first name, and last name.
+
+Click Send Invite. New users receive an email to create a password and complete their account authorization.
+
+Click Save User Changes (✓).
+New users are now added to the Enterprise Application Access default directory - EAA Cloud directory.
+
+Next, create an ​Akamai​ Identity provider (IdP).
+
+Create an ​Akamai​ Identity provider (IdP), associate the cloud directory, and deploy the IdP
+Identity providers (IdPs) manage user identity information and provide single sign-on (SSO) and multi-factor (MFA) authentication.
+
+Associate IdP to the previously created directory to allow users to authenticate to your TCP-type client-access application.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Identity & Users > Identity Providers.
+
+Click Add Identity provider (+).
+
+Enter a name, description, and select the provider type as ​Akamai​, for example, IDP2.
+
+Click Continue.
+
+In Settings > General > Identity server enter a URL.
+
+In Client select both Enable EAA Client and Enable Device Posture.
+With this configuration, you can set access control rules (ACLs).
+
+Click Save.
+
+In Directories click Associate (+).
+Associate directory
+
+Select Cloud Directory and click Associate.
+The cloud directory appears under Directories.
+
+Leave the default settings in the Login portal.
+
+Click Save.
+Hover over the Status of the Identity provider, if there are no errors, Ready for deployment appears.
+Ready for deployment
+
+Click Deploy IdP.
+Pending Changes appears. All the pending deployment changes are shown. Make sure that
+IDP2 is selected. If you select any other IdPs, they are simultaneously deployed.
+You can click modified, to check the changes you have done with the previous version.
+Pending changes
+
+Click Deploy and add a Deploy Confirmation message in the dialog box and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow and IdP is Deployed appear.
+IdP is deployed
+
+The cloud directory is now associated with the identity provider. This enables users from the directory to access applications associated with the identity provider.
+
+Next, configure your application.
+
+Configure a TCP-type client-access app with Device Posture ACLs
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Click the Add Application (+).
+
+In Type select Client-Access App and in Mode select TCP mode (single port, port mapping, load-balancing options).
+
+Enter application Name and optional Description.
+
+Click Add Application and in App Settings configure the following:
+
+Application Host. Enter the hostname of the client access application. This is the hostname that the native client uses to communicate with the application or application server. For example, if you are configuring a client like Outlook, this would be the hostname that is associated with Outlook accounts in your organization such as mail.mydomain.com, and is used to communicate with Microsoft Exchange.
+
+Port. Specify the same port number, as you are going to add for the application App Server IP/FQDN. The EAA Client listens for traffic on this port from the user's computer.
+
+Endpoint Host. Enter the external host of your application. This is the cloud endpoint for all
+communications between the client access application and Enterprise Application Access.
+App settings
+
+Additionally, select one of these domains:
+
+Use your domain. If you use your own custom domain, provide a certificate configured as a complete bundle with all the subordinates (having the full chain of trust), otherwise you get a web-socket error. To use an uploaded certificate, select Use uploaded certificates and select the previously uploaded certificate.
+
+Use Akamai domain. If you use an ​Akamai​ domain no certificate is needed. For the purpose of this Get Started Guide, let's select the Akamai domain.
+
+Akamai Cloud Zone. The cloud zone should be a geographic location that is closest to the data center where your application server resides. The ​Akamai​ Cloud Zone can start with Client-* like in Client-US-East, Client-US-West. It is the zone closest to the application in the data center.
+
+Click Save.
+
+To add connectors to the application go to Connectivity, Authentication and Access section. Click Connectors.
+
+👍
+More than one connector is recommended for high availability and load balancing.
+
+Click Add connector and select one or more connectors. Click Add Connector.
+To remove a connector, click Remove Connector next to it.
+The associated connector appears under the Connectors.
+📘
+The connector should run to deploy the application.
+Connectors
+
+To add Application Server IP/FQDN and Port to the application configure the following:
+
+In Application Server IP/FQDN enter the IP address or fully qualified domain name (FQDN).
+
+In Port enter the port of the TCP application. It should be the same port number as you entered in the previous steps in the App Settings.
+
+📘
+To configure multiple applications servers for load balancing, click Add New Server (+). Enterprise Application Access supports various load balancing techniques including round-robin, session or cookie stickiness, and source IP hash in Advanced.
+Server settings
+
+To add an access control rule (ACL) to the application in Access enable Access.
+For Device Posture ACLs to work, set up EAA Client with Device Posture enabled.
+
+To create a new rule, click Add Rule (+) in Deny Access Rules.
+
+To edit an existing rule, click Edit Rule.
+The rule settings dialog appears.
+
+In Rule Name enter a name for the rule and click Add.
+
+In Type select Device Risk Tier.
+
+In the Operator menu leave is. It is the default value for Device Posture risk tiers.
+
+In Value select High.
+
+Click Add Criteria (+) and configure the following:
+
+In Type select Device Risk Tag.
+
+In the Operator menu, appears is not, that is the default value for Device Posture risk tags.
+
+In the Value select a tag. For example, you can apply a tag that groups devices that are not IOS devices.
+
+Click Add.
+
+Click Save Rule.
+With this ACL configuration, a user accessing the TCP-type client-access application from a machine that falls into a high-risk tier, and is not a IOS mobile device, that's basically a Windows PC with a low risk tier is allowed to access to the application.
+
+Deny access rules
+
+Next, configure the authentication source and deploy your application.
+
+Configure the authentication source, and deploy the application
+Assign the previously deployed IdP and directory to the TCP-type client-access application and deploy your app.
+
+Log in to Enterprise Center.
+
+In the Enterprise Center navigation menu, select Application Access > Applications > Applications.
+
+Click your application.
+
+To add authentication to the application in Authentication enable Authentication.
+
+In Identity provider, select your identity provider.
+
+Click Assign Directory and select one or more directories.
+
+Click Associate.
+The directory appears under the Assigned Directories.
+Authentication
+
+Leave the default configuration in History and click Save.
+Hover over the Deployment symbol, if all configurations are correct, Ready for Deployment appears.
+Ready for deployment
+
+Click the Deploy Application.
+Pending Changes appears. All the pending deployment changes are shown. Make sure that the application you just configured is selected. If you select any other applications, they are simultaneously deployed.
+
+Click Deploy and add a Deploy Confirmation message in the dialog box, and click Deploy.
+The deployment may take several minutes to complete. When it's ready, the completed deployment flow App Deployed appears. App deployed
+
+Next, verify if you can access your application.
+
+Verify you can access the TCP-type client-access application from the EAA Login Portal
+Open a new tab and enter the external URL you created for the app in the previous steps. For example https://mail.mydomain.stage.akamai-access.com.
+
+Log in with your username and password you created and added to the cloud directory.
+You should be able to securely access the TCP-type client-access app.
+If the user accesses the mail.mydomain app on a computer that was qualified as a high-risk device, they are denied access, since you set a corresponding ACL.
+
+
+
+
+
+Access and manage EAA from Control Center
+Suggest Edits
+In ​Akamai Control Center​ you can manage groups and properties for your ​Akamai​ accounts and monitor, configure, resolve, and plan your products.
+
+Control center
+
+Account selector (1). Select the account or contract.
+
+Services menu (2). Select ENTERPRISE SECURITY > Enterprise Center.
+The contents and products under these menus may change based on the selected account or contract.
+
+📘
+If you do not see the content or product in the menu, make sure the correct account or contract is selected. For further assistance contact your account representative or visit the Control Center help.
+
+Access Enterprise Center from ​Akamai Control Center​
+Log in to ​Akamai Control Center​ at https://control.akamai.com.
+
+Go to ☰ > ENTERPRISE SECURITY > Enterprise Center.
+
+Alternatively, you can go to ☰ > ENTERPRISE SECURITY > Enterprise Application Access . You will be redirected to Applications list page in EAA.
+
+🚧
+Control Center is not supported on Microsoft Edge browser.
+
+Manage role-based access control
+Enable role based access control for Enterprise Application Access (EAA) administrators in Identity and Access Management application in ​Akamai Control Center​. When you have an account with ​Akamai​, for each contract, admin and viewer roles are commonly used for controlling Enterprise Application Access (EAA). Other default roles like editor, publisher are not used in Enterprise Application Access. The admin role has read and write access to the EAA application. The viewer role has read access to the EAA application and cannot make configuration updates. Small organizations normally have one user with admin role, to configure the different components of Enterprise Application Access like connectors, applications, directories, identity providers, and applications, and other users as viewers. Large organizations might have multiple contracts to isolate staging environment and production environment, or for isolation between different geographical locations. They might want to have multiple administrators having different privileges for different contracts. Alternatively, even within one contract, an organization might want to have a unique administrator for each component.
+
+With role-based access control, you get a higher level of control and can fine-tune administration management tasks. It can be seamlessly distributed across multiple administrators by the super administrator of the account with role-based access control in ​Akamai Control Center​. You can also customize the control for different components in Enterprise Application Access to different administrators by choosing the proper permission settings in the Identity and Access Management application in ​Akamai Control Center​.
+
+These portal roles are preconfigured for Enterprise Application Access in the Identity and Access Management application in ​Akamai Control Center​ are:
+
+Preconfigured roles	Permission settings	Read or Write privileges
+Admin	EAA - Admin	EAA administrator with read and write access to connectors, identity providers (IdP), directories, applications, and reports.
+Viewer	EAA - ReadOnly	EAA administrator with read access to connectors, identity providers, directories, applications, and reports.
+The different portal roles that can be configured for Enterprise Application Access in the Identity and Access Management application in ​Akamai Control Center​ are:
+
+Configurable roles	Permission settings	Read or Write privileges
+EAA applications administrator	EAA - App Admin	​Control Center​ administrator with read and write access to EAA applications only, and read access to all EAA resources.
+EAA connector administrator	EAA - Connector Admin	EAA administrator with read and write access to connectors only, and read access to all EAA resources.
+EAA identity administrator	EAA - IDP Admin	EAA administrator with read and write access to EAA IdP and directories only, and read access to all EAA resources.
+EAA reports administrator	EAA - Report Admin	EAA administrator with read and write access to EAA Reports only, and read access to all EAA resources.
+EAA custom administrator	Any combination of the above settings	EAA administrator gets permissions based on which combinations are selected. For example, if you set both EAA - Connector Admin and EAA - IdP Admin permissions to one administrator, then your administrator have write access to connectors, identity providers, and directories, and read access to all EAA resources.
+In ​Akamai Control Center​, with Identity and Access Management application, for each contract, you can create custom roles for EAA administration, and assign users belonging to the account to these roles.
+
+Users with read only access might not be able configure or view some of the EAA Dashboard features.
+
+Create a custom role on ​Akamai Control Center​
+The administrator for the account can create EAA app admin, EAA connector admin, EAA identity admin for controlling different Enterprise Application Access resources. It gives certain control for read and write privileges for different Enterprise Application Access components.
+
+Go to ☰ > ACCOUNT ADMIN > Identity & access.
+
+Select Roles.
+
+Click Create role. In Create a new role configure the following:
+
+In Enter Name type a name for the custom role.
+
+In Enter Description type a description for the custom role.
+
+In Summary enter a list of products.
+
+Select All permissions. Based on the type of access required for the role, the administrator can select one or more of the permissions for controlling Enterprise Application Access:
+
+Admin role	Write and Read access resource type	Ready only access resource type
+EAA - App Admin	✓ EAA application	✓ all
+EAA - Connector Admin	✓ EAA connector	✓ all
+EAA - IdP Admin	✓ EAA identity provider (IdP) and directories	✓ all
+EAA - Report Admin	✓ EAA Reports (IdP)	✓ all
+Further customization is possible by selecting multiple choices, for example, you can have EAA - App Admin and EAA - Connector Admin set to one administrator, so that your admin has read and write access to application, connector, and read access to identity provider, directory, and EAA reports.
+
+👍
+If you need to control other ​Akamai​ products, you can choose the permissions to access those products.
+
+Click Save.
+Add a user to a portal role in ​Akamai Control Center​
+You can add any user belonging to the account, to do administration of the different resources like applications, connectors, identity providers (IdP) or directories.
+
+Open the application.
+
+In the ​Akamai Control Center​, go to ☰ > ACCOUNT ADMIN > Identity & access.
+
+In the classic Luna UI, on the Configure menu, go to Organization and click Manage Users & Groups.
+
+Select Users and API Clients.
+
+In Group select All Groups.
+All the users associated with the account within all groups are shown.
+
+Select the user whose role needs to be modified.
+
+Select Edit roles.
+All of the contracts are in the Group name column. All of the roles of this user for each contract are in the Roles column.
+
+Select the contract for which you want to change the privileges for the user.
+
+In Roles click Edit and enter the new role you created and update the role of the user.
+
+Click Save. The user's role for the contract gets updated.
+
+When the user logs into the Enterprise Center for the appropriate contract, based on the permissions set by the account administrator, they are allowed to access that resource.
+
+Example:
+There are three contracts for an account. The user user_a@gmail.com has an admin role for contract_1, unassigned roles for contract_2 and contract_3, initially.
+
+initial_rbac_setting
+
+If you want to grant read and write access only to the EAA application resource for this user, update a custom role of EAA-App-Admin.
+
+custom_rbac_setting
+
+With the updated permissions, when the user logs in with valid credentials, they can make configuration updates in Applications. But when they try to access identity provider, directory, or connectors they get the error message: You are not authorized to perform this operation. Please contact your administrator.
