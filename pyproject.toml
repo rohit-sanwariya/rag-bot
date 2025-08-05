@@ -4,4 +4,14 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "requests",
+    "sentence-transformers",  # for chunk embedding
+    "faiss-cpu",              # for vector search
+    "python-dotenv",          # if you're using .env for config
+    "fastapi",                # if you're building an API
+    "uvicorn",                # for serving FastAPI
+    "pydantic",               # for request/response models
+    "tqdm",                   # optional, for progress bars
+    "numpy",                  # for vector operations (dependency of faiss)
+]
